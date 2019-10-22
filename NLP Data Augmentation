@@ -1,0 +1,31 @@
+More data we have, better performance we can achieve.Therefore, proper data augmentation is useful to boost up your model performance. Augmentation is very popular in computer vision area. Image can be augmented easily by flipping, adding salt etc via image augmentation library such as imgaug. It is proved that augmentation is one of the anchor to success of computer vision model.
+
+In natural language processing (NLP) field, it is hard to augmenting text due to high complexity of language. Not every word we can replace it by others such as a, an, the. Also, not every word has synonym. Even changing a word, the context will be totally difference. On the other hand, generating augmented image in computer vision area is relative easier. Even introducing noise or cropping out portion of image, model can still classify the image.
+
+Given that we do not have unlimited resource to build training data by human, authors tried different methods to achieve same goals which is generating more data for model training. Lets explore different ways how they leverage augmentation to tickle NLP tasks via generating more text data to boost up the models. The following story will cover:
+
+    Thesaurus
+    Word Embeddings
+    Back Translation
+    Contextualized Word Embeddings
+    Text Generation
+
+Thesaurus
+
+Zhang et al. introduced synonyms Character-level Convolutional Networks for Text Classification. During the experiment, they found that one of the useful way to do text augmentation is replacing words or phrases with their synonyms. Leverage existing thesaurus help to generate lots of data in a short time. Zhang et al. select a word and replace it by synonyms according to geometric distribution.
+
+Word Embeddings
+
+Wang and Yang introduced word similar calculation. A Lexical and Frame-Semantic Embedding Based Data Augmentation Approach to Automatic Categorization of Annoying Behaviors using #petpeeve Tweets. In the paper, Wang and Yang proposed to use k-nearest-neighbor (KNN) and cosine similarity to find the similar word for replacement.
+
+Back Translation
+
+English is one of the language which having lots of training data for translation while some language may not has enough data for train a machine translation model. Sennrich et al. used back-translation method to generate more training data to improve translation model performance. Given that we want to train a model for translating English (source language) → Hindi (target language) and there is not enough training data for Hindi. Back-translation is translating target language to source language and mixing both original source sentence and back-translated sentence to train a model. So the number of training data from source language to target language can be increased.
+
+Contextualized Word Embeddings
+
+Rather than using static word embeddings, Fadaee et al. use contextualized word embeddings to replace target word. They use this text augmentation to validate machine translation model in Data Augmentation for Low-Resource Neural Machine Translation. The proposed approach is TDA which stands for Translation Data Augmentation.
+
+Text Generation
+
+Kafle et al. introduced a different approach which generate augmented data by generating it in Data Augmentation for Visual Question Answering. Different from previous approach, Kafle et al. approaches do not replace single of few words but generating the whole sentence. First approach is using template augmentation which is using pre-defined question can using rule-based to generate an answer to pair with the template questions. Second approach leverages LSTM to generate a question by providing image feature.
