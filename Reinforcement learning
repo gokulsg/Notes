@@ -1,0 +1,20 @@
+Reinforcement learning is an important type of Machine Learning where an agent learn how to behave in a environment by performing actions and seeing the results. Reinforcement learning is about taking suitable action to maximize reward in a particular situation. 
+
+It is employed by various software and machines to find the best possible behavior or path it should take in a specific situation. Reinforcement learning differs from the supervised learning in a way that in supervised learning the training data has the answer key with it so the model is trained with the correct answer itself whereas in reinforcement learning, there is no answer but the reinforcement agent decides what to do to perform the given task. In the absence of training dataset, it is bound to learn from its experience.
+
+Components:
+
+Agent - the entity exhibiting certain behaviors (actions) based on its environment.
+
+Actions - what the agent chooses to do at certain places in the environment. Actions can be discrete or continuous.
+
+States - has to do with where in the environment the agent resides (at a specific location) or with what is going on in the environment (for a robotic vacuum, perhaps that its current location is also clean). By taking actions, the agent moves from one state to a new state. States can be partial or absolute.
+
+Discount factor - determines the extent to which future rewards should contribute to the overall sum of expected rewards. At a factor of zero, this means agent would only care about the very next action and its reward. With a factor of one, it pays attention to future rewards as well.
+
+Policy - this determines what action the agent takes given a particular state. Policies are split between stochastic and deterministic policies. Note that policy functions are often denoted by the symbol π.
+
+   i) Stochastic - determines a probability for choosing a given action in a particular state (e.g. an 80% chance to go straight, 20% chance to turn left)
+  ii) Deterministic - directly maps actions to states.
+  
+Value Function - Value functions indicate which actions you should take to maximize rewards over the long-term (the expected rewards when starting from some given state). These are often represented with the capital letter V.
