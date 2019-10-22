@@ -1,0 +1,29 @@
+The code for Social network friendship recommendation in neo4j is :
+
+MATCH (me:Person {name: "Gokul"})
+MATCH (me)-[:FRIEND_OF]-()-[:FRIEND_OF]-(potentialFriend)
+
+WITH me, potentialFriend, COUNT(*) AS friendsInCommon
+
+WITH me,
+     potentialFriend,
+     SIZE((potentialFriend)-[:LIVES_IN]->()<-[:LIVES_IN]-(me)) AS sameLocation,
+     abs( me.age - potentialFriend.age) AS ageDifference,
+     LABELS(me) = LABELS(potentialFriend) AS gender,
+     friendsInCommon
+
+WHERE NOT (me)-[:FRIEND_OF]-(potentialFriend)
+
+WITH potentialFriend,
+       100 * (1 - exp((-1.0 * (log(5.0) / 10)) * friendsInCommon)) AS friendsInCommon,
+       sameLocation * 10 AS sameLocation,
+       -1 * (10 * (1 - exp((-1.0 * (log(5.0) / 20)) * ageDifference))) AS ageDifference,
+       CASE WHEN gender THEN 10 ELSE 0 END as sameGender
+
+RETURN potentialFriend,
+      {friendsInCommon: friendsInCommon,
+       sameLocation: sameLocation,
+       ageDifference:ageDifference,
+       sameGender: sameGender} AS parts,
+     friendsInCommon + sameLocation + ageDifference + sameGender AS score
+ORDER BY score DESC
