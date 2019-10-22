@@ -1,1 +1,20 @@
 Neo4j is a graph database management system which supports all the ACID properties of relational RDBMS.
+
+A graph database is essentially a collection of nodes and edges. Each node represents an entity (such as a person or business) and each edge represents a connection or relationship between two nodes.
+Every node in a graph database is defined by a unique identifier, a set of outgoing edges and/or incoming edges and a set of properties expressed as key/value pairs.
+Each edge is defined by a unique identifier, a starting-place and/or ending-place node and a set of properties.
+
+In Neo4j, everything is stored in the form of an edge, node, or attribute. 
+Each node and edge can have any number of attributes.
+Both nodes and edges can be labeled. Labels can be used to narrow searches. 
+Cypher is Neo4j’s graph query language that allows users to store and retrieve data from the graph database.
+It is a declarative, SQL-inspired language for describing visual patterns in graphs using ASCII-Art syntax.
+
+The Features include :
+
+Flexible Schema: Neo4j follows a data model called graph model. The graph contains nodes and the nodes are connected to each other. Nodes and relationships store data in key-value pairs known as properties. 
+ACID Property: Neo4j supports full ACID properties (Atomicity, Consistency, Isolation and Durability).
+Scalability: Neo4j facilitates you to scale the database by increasing the number of reads/writes, and the volume without affecting the data integrity and the speed of query processing.
+Reliability: Neo4j provides replication for data safety and reliability. 
+Cypher Query Language: Neo4j provides a powerful declarative query language called Cypher Query language. It is used to create and retrieve relations between data without using the complex queries like Joins.
+Built-in Web applications: Neo4j also provides a built-in Neo4j browser web application which can be used to create and retrieve your graph data. 
