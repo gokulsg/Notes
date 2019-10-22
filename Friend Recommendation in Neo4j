@@ -1,0 +1,26 @@
+This Algorithm uses the power of Neo4j in recommending friends to the users.
+
+The algorithm is :
+
+Function Recommend user( )
+{
+	// input : nodes and their relationship
+	// output : List of friends to recommend to user
+	Mutual = count of mutual friends
+  If (gender of user = gender of potential friend)	
+    Score = score+10
+  If (location of user = location of potential friend)	
+    Score = score+10
+  Diff_age = age_of_user - age_of_potential friend
+  Score = Diff_age + Mutual
+  // Sort the friends by the score
+  // Limit the number of recommendations to three
+  //Recommend friend based on users having highest score value
+}
+
+This algorithm will calculate the number of mutual friends a person have and normalize this value to avoid this value to take advantage over all the other values (Dispropositionate effect)
+
+The it calculate the age difference and the people of the same age group gets higher preference.
+Also the people of same gender and people who are living in same location gets higher preference.
+
+This algorithm helps in connecting the like minded people across the globe together.
