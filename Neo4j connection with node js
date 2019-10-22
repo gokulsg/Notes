@@ -1,0 +1,81 @@
+1) The below code will create the node A with the given properties.
+
+const neo4j = require('neo4j-driver').v1;
+
+const driver = neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('username', 'password'));
+const session = driver.session();
+
+const UserName = 'A';
+const personName = "abc";
+const Age = 20;
+const Location = "abc";
+const Gender = "Male";
+const Emailaddr = "abc@abc.com";
+
+const resultPromise = session.run(
+  'CREATE (Person:User {Username:$uname, Name:$name, Age:$uage, Location: $loc, Gender: $gen, Email: $email}) RETURN Person',
+  {uname: UserName, name: personName, uage: Age, loc: Location, gen: Gender, email: Emailaddr}
+);
+
+resultPromise.then(result => {
+  session.close();
+
+  const singleRecord = result.records[0];
+  const node = singleRecord.get(0);
+
+  console.log(node.properties.Name);
+
+  driver.close();
+});
+
+2) The below code will create the bidirectional 'Friend_of' relation between to nodes A and B.
+
+const neo4j = require('neo4j-driver').v1;
+
+const driver = neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('username', 'password'));
+const session = driver.session();
+
+const UserName1 = 'A';
+const UserName2 = 'B';
+
+const resultPromise = session.run(
+  'MATCH (a:User), (b:User) WHERE a.Username = $uname1 AND b.Username = $uname2 CREATE (a)-[r1:FRIEND_OF]->(b) , (b)-[r2:FRIEND_OF]->(a)',
+  {uname1: UserName1, uname2: UserName2}
+);
+
+resultPromise.then(result => {
+  session.close();
+  driver.close();
+});
+
+3) The below code will recommend potential friend for the person A.
+
+const neo4j = require('neo4j-driver').v1;
+
+const driver = neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('username', 'password'));
+const session = driver.session();
+
+const personName = 'A';
+const resultPromise = session.run(
+  'MATCH (me:Person {name: $name}) MATCH (me)-[:FRIEND_OF]-()-[:FRIEND_OF]-(potentialFriend) WITH me, potentialFriend, COUNT(*) AS friendsInCommon WITH me, potentialFriend, SIZE((potentialFriend)-[:LIVES_IN]->()<-[:LIVES_IN]-(me)) AS sameLocation, abs( me.age - potentialFriend.age) AS ageDifference, LABELS(me) = LABELS(potentialFriend) AS gender, friendsInCommon WHERE NOT (me)-[:FRIEND_OF]-(potentialFriend) WITH potentialFriend, 100 * (1 - exp((-1.0 * (log(5.0) / 10)) * friendsInCommon)) AS friendsInCommon, sameLocation * 10 AS sameLocation, -1 * (10 * (1 - exp((-1.0 * (log(5.0) / 20)) * ageDifference))) AS ageDifference, CASE WHEN gender THEN 10 ELSE 0 END as sameGender RETURN potentialFriend, {friendsInCommon: friendsInCommon, sameLocation: sameLocation, ageDifference:ageDifference, sameGender: sameGender} AS parts, friendsInCommon + sameLocation +abs(ageDifference) + sameGender AS score ORDER BY score DESC limit 3',
+  {name: personName}
+);
+
+resultPromise.then(result => {
+  session.close();
+
+  const singleRecord1 = result.records[0];
+  const singleRecord2 = result.records[1];
+  const singleRecord3 = result.records[2];
+  
+  
+  const node1 = singleRecord1.get(0);
+  const node2 = singleRecord2.get(0);
+  const node3 = singleRecord3.get(0);
+
+  console.log(node1.properties.name);
+  console.log(node2.properties.name);
+  console.log(node3.properties.name);
+
+  driver.close();
+});
