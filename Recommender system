@@ -1,0 +1,58 @@
+Recommender Systems are simple algorithms which aim to provide the most relevant and accurate items to the user by filtering useful stuff from of a huge pool of information base. Recommendation engines discovers data patterns in the data set by learning consumers choices and produces the outcomes that co-relates to their needs and interests.
+
+In Real time examples are like Amazon, they have been using a recommendation engine for suggesting the goods or products that customers might also like.
+
+Machine learning algorithms in recommender systems are typically classified into two categories — content based and collaborative filtering methods although modern recommenders combine both approaches. Content based methods are based on similarity of item attributes and collaborative methods calculate similarity from interactions.
+
+The popular methods of recommending products to users are : 
+    
+1. Popularity based:
+
+  Easiest way to build a recommendation system is popularity based, simply over all the products that are popular, So how to identify popular products, which could be identified by which are all the products that are bought most,
+
+Example, In shopping store we can suggest popular dresses by purchase count.
+
+2. Classification based
+
+Second way to build a recommendation system is classification model , In that use feature of both users as well as products in order to predict whether this product liked or not by the user.
+
+When new users come, our classifier will give a binary value of that product liked by this user or not, In such a way that we can recommend a product to the user .
+
+3. Collaborative filtering:
+
+Collaborative filtering models which are based on assumption that people like things similar to other things they like, and things that are liked by other people with similar taste.
+
+collaborative filtering models are two types,
+
+I.Nearest neighbor
+
+II.Matrix factorization
+
+Nearest neighbor collaborative filtering:
+
+In these type of recommendation systems are recommending based on nearest neighbors. Nearest neighbor approach used to find out either similar users or similar products,
+
+It can be looked at two ways,
+
+i.User based filtering
+
+ii.Item based filtering
+
+User-based collaborative filtering:
+
+Find the users who have similar taste of products as the current user , similarity is based on purchasing behavior of the user, so based on the neighbor purchasing behavior we can recommend items to the current user.
+
+Item-based collaborative filtering :
+
+Recommend Items that are similar to the item user bought,similarity is based on co-occurrences of purchases
+
+Item A and B were purchased by both users X and Y then both are similar.
+
+Matrix factorization:
+
+It is basically model based collaborative filtering and matrix factorization is the important technique in recommendation system. 
+When a user gives feed back to a certain movie they saw, this collection of feedback can be represented in a form of a matrix. Where each row represents each users, while each column represents different movies. Collaborative methods work with the interaction matrix that can also be called rating matrix in the rare case when users provide explicit rating of items. The task of machine learning is to learn a function that predicts utility of items to each user. Matrix is typically huge, very sparse and most of values are missing.
+
+Hybrid Recommendation systems:
+
+Hybrid Recommendation systems are combining collaborative and content-based recommendation can be more effective. Hybrid approaches can be implemented by making content-based and collaborative-based predictions separately and then combining them.
