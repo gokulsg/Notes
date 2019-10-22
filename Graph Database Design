@@ -1,0 +1,25 @@
+Cypher is Neo4j’s graph query language that allows users to store and retrieve data from the graph database. Neo4j wanted to make querying graph data easy to learn, understand, and use for everyone, but also incorporate the power and functionality of other standard data access languages. This is what Cypher aims to accomplish.
+
+Some properties of graph databases are:
+1. Nodes usually have labels. 
+2. Nodes usually have properties. Properties provide extra information about the node. 
+3. Relationships can also have properties.
+4. Relationships usually have a type (this is basically like a node's label). Examples could include "KNOWS", "LIKES", "WORKS_FOR", "PURCHASED", etc. 
+
+The node can be created using following query,
+
+CREATE (p:Person { name:"Bob" })
+
+here,
+The node is surrounded by parentheses ().
+Person is the node's label.
+name is a property of the node.
+
+The relations are represented by, 
+
+(a)- [ Friend_OF ] - (b)
+
+here,
+Nodes are represented by parentheses, which look like circles. Like this: (node)
+Relationships are represented by arrows. Like this: ->
+Information about a relationship can be inserted between square brackets. Here nodes a and b have a relation ‘FRIEND_OF’
